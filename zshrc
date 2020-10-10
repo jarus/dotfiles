@@ -4,7 +4,11 @@ if [[ -z "$LANG" ]]; then
   export LC_ALL='en_US.UTF-8'
 fi
 
-ZPLUG_HOME=/usr/local/opt/zplug
+if [[ -d ~/.zplug ]]; then
+  ZPLUG_HOME=~/.zplug
+else
+  ZPLUG_HOME=/usr/local/opt/zplug
+fi
 source $ZPLUG_HOME/init.zsh
 
 zplug "modules/utility", from:prezto
