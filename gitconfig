@@ -1,0 +1,15 @@
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+
+[alias]
+	ff = merge --ff-only
+	puff = pull --ff-only
+	purr = pull --rebase
+
+[rebase]
+	autosquash = true
+
+# Allow local customizations in the .gitconfig_local file
+[include]
+	path = ~/.gitconfig_local
