@@ -15,9 +15,9 @@ _terminal_preexec_handler() {
     local title
 
     if [[ ! -z $SSH_CONNECTION ]]; then
-        title="${(%):-(%m) ● $2}"
+        title="${(%):-(%m) %~ - $2}"
     else
-        title="${(%):-● $2}"
+        title="${(%):-%~ - $2}"
     fi
     print -n $'\e]0;'${title}'\a'
 }
