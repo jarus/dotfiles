@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-# Async helpers
 _async_vcs_info_start() {
     async_start_worker vcs_info
     async_register_callback vcs_info _async_vcs_info_done
@@ -29,11 +28,15 @@ _async_vcs_info_done() {
     [[ $more == 1 ]] || zle reset-prompt
 }
 
-# Asynchronous VCS status
-_async_vcs_info_start
-add-zsh-hook precmd (){
+_async_vcs_info_precmd_handler() {
     async_job vcs_info _async_vcs_info_get_vcs_info_msg $PWD
 }
-add-zsh-hook chpwd (){
+
+_async_vcs_info_chpwd_handler() {
     vcs_info_msg_0_=
 }
+
+# Asynchronous VCS status
+_async_vcs_info_start
+add-zsh-hook precmd _async_vcs_info_precmd_handler
+add-zsh-hook chpwd _async_vcs_info_chpwd_handler
