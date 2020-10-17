@@ -93,6 +93,12 @@ zinit wait lucid light-mode for \
   blockf atpull'zinit creinstall -q .' \
       zsh-users/zsh-completions
 
+if [[ -d "$HOME/.pyenv/" ]]; then
+  export PATH=$HOME/.pyenv/bin:$PATH
+fi
+
+zinit ice wait
+zinit snippet ~/.dotfiles/zsh/pyenv.zsh
 
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
     source ~/.nix-profile/etc/profile.d/nix.sh
