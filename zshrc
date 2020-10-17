@@ -12,6 +12,7 @@ zinit ice compile'async.zsh' pick'async.zsh'
 zinit load mafredri/zsh-async
 
 autoload -Uz vcs_info
+autoload -Uz add-zsh-hook
 
 () {
     zstyle ':vcs_info:*' enable git
@@ -57,6 +58,7 @@ autoload -Uz vcs_info
     }
 }
 
+source ~/.dotfiles/zsh/terminal.zsh
 source ~/.dotfiles/zsh/async_vcs_info.zsh
 
 setopt PROMPT_SUBST
@@ -90,6 +92,7 @@ zinit wait lucid light-mode for \
       zdharma/fast-syntax-highlighting \
   blockf atpull'zinit creinstall -q .' \
       zsh-users/zsh-completions
+
 
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
     source ~/.nix-profile/etc/profile.d/nix.sh
