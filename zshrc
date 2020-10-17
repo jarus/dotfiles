@@ -4,28 +4,96 @@ if [[ -z "$LANG" ]]; then
   export LC_ALL='en_US.UTF-8'
 fi
 
-if [[ -d ~/.zplug ]]; then
-  ZPLUG_HOME=~/.zplug
+source ~/.zinit/bin/zinit.zsh
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+zinit ice compile'async.zsh' pick'async.zsh'
+zinit load mafredri/zsh-async
+
+autoload -Uz vcs_info
+
+() {
+    zstyle ':vcs_info:*' enable git
+
+    local formats=" %b %c%u"
+    local actionformats="${formats} %F{yellow}!%a%f"
+    zstyle ':vcs_info:*:*' formats $formats
+    zstyle ':vcs_info:*:*' actionformats $actionformats
+    zstyle ':vcs_info:*:*' stagedstr "%F{green}●%f"
+    zstyle ':vcs_info:*:*' unstagedstr "%F{yellow}●%f"
+    zstyle ':vcs_info:*:*' check-for-changes true
+    zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+
+    +vi-git-untracked(){
+        if [[ ! $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]]; then
+            return
+        fi
+
+        while IFS= read -r line; do
+            if [[ $line == $'# branch.ab '* ]]; then
+                local -a splitted_line
+                splitted_line=( ${(s: :)line} )
+
+                if [[ ${splitted_line[3]} != "+0" || ${splitted_line[4]} != "-0" ]]; then
+                    hook_com[branch]+=" %F{cyan}("
+                    if [[ ${splitted_line[3]} != "+0" ]]; then
+                        hook_com[branch]+="↑${splitted_line[3]:1}"
+                    fi
+                    if [[ ${splitted_line[3]} != "+0" && ${splitted_line[4]} != "-0" ]]; then
+                        hook_com[branch]+=" "
+                    fi
+                    if [[ ${splitted_line[4]} != "-0" ]]; then
+                        hook_com[branch]+="↓${splitted_line[4]:1}"
+                    fi
+                    hook_com[branch]+=")%f"
+                fi
+            fi
+            if [[ $line == $'? '* ]]; then
+                hook_com[staged]+="%F{red}●%f"
+                break
+            fi
+        done < <(git status --branch --porcelain=v2 2> /dev/null)
+    }
+}
+
+source ~/.dotfiles/zsh/async_vcs_info.zsh
+
+setopt PROMPT_SUBST
+PROMPT=$'
+'
+
+if [[ $OSTYPE == "darwin"* ]]; then
+    PROMPT+=$'%F{242}%n%f@%F{166}%m%f '
 else
-  ZPLUG_HOME=/usr/local/opt/zplug
+    PROMPT+=$'%F{242}%n%f@%F{190}%m%f '
 fi
-source $ZPLUG_HOME/init.zsh
 
-zplug "modules/utility", from:prezto
-zplug "modules/terminal", from:prezto
-zplug "modules/history", from:prezto
-zplug "modules/ssh", from:prezto
-zplug "modules/python", from:prezto
-zplug "modules/completion", from:prezto
+PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_ %(12V.%F{242}%12v%f .)
+%(?.%F{yellow}.%F{red})$%f '
 
-zplug "~/.zsh", as:theme, from:local
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections' format '%F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format '%F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format '%F{red}-- no matches found --%f'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*' format '%F{yellow}-- %d --%f'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
 
-zplug load
+zinit wait lucid light-mode for \
+  atinit"zicompinit; zicdreplay" \
+      zdharma/fast-syntax-highlighting \
+  blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions
 
-fpath=(
-  /usr/local/share/zsh/functions
-  $fpath
-)
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
+    source ~/.nix-profile/etc/profile.d/nix.sh
+fi
 
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
