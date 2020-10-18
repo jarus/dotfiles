@@ -4,6 +4,8 @@ if [[ -z "$LANG" ]]; then
   export LC_ALL='en_US.UTF-8'
 fi
 
+typeset -U PATH
+
 source ~/.zinit/bin/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -17,7 +19,7 @@ autoload -Uz add-zsh-hook
 () {
     zstyle ':vcs_info:*' enable git
 
-    local formats=" %b %c%u"
+    local formats=" %b%c%u"
     local actionformats="${formats} %F{yellow}!%a%f"
     zstyle ':vcs_info:*:*' formats $formats
     zstyle ':vcs_info:*:*' actionformats $actionformats
@@ -49,6 +51,7 @@ autoload -Uz add-zsh-hook
                     fi
                     hook_com[branch]+=")%f"
                 fi
+                hook_com[branch]+=" "
             fi
             if [[ $line == $'? '* ]]; then
                 hook_com[staged]+="%F{red}●%f"
@@ -71,7 +74,7 @@ else
     PROMPT+=$'%F{242}%n%f@%F{190}%m%f '
 fi
 
-PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_ %(12V.%F{242}%12v%f .)
+PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg
 %(?.%F{yellow}.%F{red})$%f '
 
 zstyle ':completion:*:*:*:*:*' menu select
@@ -97,7 +100,7 @@ if [[ -d "$HOME/.pyenv/" ]]; then
   export PATH=$HOME/.pyenv/bin:$PATH
 fi
 
-zinit ice wait
+zinit ice wait'!' silent atload'_pyenv_prompt_update'
 zinit snippet ~/.dotfiles/zsh/pyenv.zsh
 
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
