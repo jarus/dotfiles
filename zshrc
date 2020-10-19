@@ -94,7 +94,9 @@ zinit wait lucid light-mode for \
   atinit"zicompinit; zicdreplay" \
       zdharma/fast-syntax-highlighting \
   blockf atpull'zinit creinstall -q .' \
-      zsh-users/zsh-completions
+      zsh-users/zsh-completions \
+  blockf atpull'zinit creinstall -q .' \
+      spwhitt/nix-zsh-completions
 
 if [[ -d "$HOME/.pyenv/" ]]; then
   export PATH=$HOME/.pyenv/bin:$PATH
