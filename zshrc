@@ -109,6 +109,10 @@ if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
     source ~/.nix-profile/etc/profile.d/nix.sh
 fi
 
+if [[ -d "$HOME/.cargo/bin" ]]; then
+  export PATH=$HOME/.cargo/bin:$PATH
+fi
+
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
