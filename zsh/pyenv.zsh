@@ -1,12 +1,11 @@
 #!/usr/bin/env zsh
 
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
 if [[ ! -v 'PYENV_SHELL' ]]; then
     if type pyenv > /dev/null; then
-        export PYENV_VIRTUALENV_DISABLE_PROMPT=1
         eval "$(pyenv init -)"
-    fi
-    if type pyenv-virtualenv > /dev/null; then
-        eval "$(pyenv virtualenv-init -)"
     fi
 fi
 
