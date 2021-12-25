@@ -113,6 +113,10 @@ if [[ -d "$HOME/.cargo/bin" ]]; then
   export PATH=$HOME/.cargo/bin:$PATH
 fi
 
+if [[ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]]; then
+  export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin":$PATH
+fi
+
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
