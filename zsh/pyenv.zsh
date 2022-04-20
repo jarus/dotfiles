@@ -5,6 +5,7 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 if [[ ! -v 'PYENV_SHELL' ]]; then
     if type pyenv > /dev/null; then
+        eval "$(pyenv init --path)"
         eval "$(pyenv init -)"
     fi
 fi

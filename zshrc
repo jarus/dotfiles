@@ -99,6 +99,7 @@ zinit wait lucid light-mode for \
       spwhitt/nix-zsh-completions
 
 if [[ -d "$HOME/.pyenv/" ]]; then
+  export PYENV_ROOT="$HOME/.pyenv"
   export PATH=$HOME/.pyenv/bin:$PATH
 fi
 
