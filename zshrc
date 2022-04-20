@@ -63,6 +63,7 @@ autoload -Uz add-zsh-hook
 
 source ~/.dotfiles/zsh/terminal.zsh
 source ~/.dotfiles/zsh/async_vcs_info.zsh
+source ~/.dotfiles/zsh/history.zsh
 
 setopt PROMPT_SUBST
 PROMPT=$'
