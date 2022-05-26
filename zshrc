@@ -91,13 +91,13 @@ zstyle ':completion:*' format '%F{yellow}-- %d --%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' verbose yes
 
-zinit wait lucid light-mode for \
-  atinit"zicompinit; zicdreplay" \
-      zsh-users/zsh-syntax-highlighting \
-  blockf atpull'zinit creinstall -q .' \
-      zsh-users/zsh-completions \
-  blockf atpull'zinit creinstall -q .' \
-      spwhitt/nix-zsh-completions
+zinit wait lucid for \
+  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+  atload"zicompinit; zicdreplay" blockf \
+    zsh-users/zsh-completions \
+  atload"zicompinit; zicdreplay" blockf \
+    spwhitt/nix-zsh-completions
 
 if [[ -d "$HOME/.pyenv/" ]]; then
   export PYENV_ROOT="$HOME/.pyenv"
@@ -113,6 +113,14 @@ fi
 
 if [[ -d "$HOME/.cargo/bin" ]]; then
   export PATH=$HOME/.cargo/bin:$PATH
+
+  zinit ice as"completion" has"rustup" \
+    atclone"rustup completions zsh > _rustup && rustup completions zsh cargo > _cargo" \
+    atpull="%atclone" \
+    run-atpull \
+    atload"zicompinit; zicdreplay" \
+    nocompile
+  zinit load zdharma-continuum/null
 fi
 
 if [[ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]]; then
