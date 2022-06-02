@@ -133,3 +133,5 @@ fi
 
 # Fix forward-delete in zsh under macOS (fn + backspace)
 bindkey "^[[3~" delete-char
+
+alias ll="ls -l --color"
