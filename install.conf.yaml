@@ -7,6 +7,7 @@
 
 - link:
     ~/.gitconfig:
+    ~/.gitignore_global:
     ~/.zshrc:
     ~/.zsh:
 
