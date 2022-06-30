@@ -15,3 +15,5 @@
 	path = ~/.gitconfig_local
 [protocol]
 	version = 2
+[advice]
+	skippedCherryPicks = false
