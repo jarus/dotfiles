@@ -10,5 +10,6 @@
     ~/.gitignore_global:
     ~/.zshrc:
     ~/.zsh:
+    ~/.gdbinit:
 
 - shell: []
