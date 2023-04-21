@@ -17,3 +17,5 @@
 	version = 2
 [advice]
 	skippedCherryPicks = false
+[credential]
+	helper = store --file ~/.git-credentials
