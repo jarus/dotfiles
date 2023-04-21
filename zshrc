@@ -106,6 +106,7 @@ fi
 zinit ice wait'!' silent atload'_pyenv_prompt_update'
 zinit snippet ~/.dotfiles/zsh/pyenv.zsh
 
+zinit ice has'docker'
 zinit snippet https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
 
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
