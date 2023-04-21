@@ -146,3 +146,4 @@ fi
 bindkey "^[[3~" delete-char
 
 alias ll="ls -alh --color"
+alias servit="python3 -m http.server 9000"
