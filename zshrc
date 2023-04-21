@@ -131,6 +131,11 @@ if [[ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]]; t
   export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin":$PATH
 fi
 
+if [[ "$VSCODE_INJECTION" == "1" ]]; then
+  echo "Apply workaround for VSCode SSH Agent Forwarding bug #168202"
+  export SSH_AUTH_SOCK=$(ls -t /tmp/ssh-**/* | head -1)
+fi
+
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
