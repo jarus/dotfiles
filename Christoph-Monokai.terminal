@@ -143,10 +143,10 @@
 	<data>
 	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
 	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGkCwwVFlUkbnVsbNQNDg8QERIT
-	FFZOU1NpemVYTlNmRmxhZ3NWTlNOYW1lViRjbGFzcyNALAAAAAAAABAQgAKAA1hDb25z
-	b2xhc9IXGBkaWiRjbGFzc25hbWVYJGNsYXNzZXNWTlNGb250ohkbWE5TT2JqZWN0CBEa
-	JCkyN0lMUVNYXmdud36FjpCSlJ2irba9wAAAAAAAAAEBAAAAAAAAABwAAAAAAAAAAAAA
-	AAAAAADJ
+	FFZOU1NpemVYTlNmRmxhZ3NWTlNOYW1lViRjbGFzcyNALAAAAAAAABAQgAKAA18QE0Nv
+	bnNvbGFzTmVyZEZvbnRDTS3SFxgZGlokY2xhc3NuYW1lWCRjbGFzc2VzVk5TRm9udKIZ
+	G1hOU09iamVjdAgRGiQpMjdJTFFTWF5nbnd+hY6QkpSqr7rDys0AAAAAAAABAQAAAAAA
+	AAAcAAAAAAAAAAAAAAAAAAAA1g==
 	</data>
 	<key>FontAntialias</key>
 	<false/>
@@ -200,7 +200,7 @@
 	<key>UseBrightBold</key>
 	<false/>
 	<key>name</key>
-	<string>Monokai-Style</string>
+	<string>Christoph-Monokai</string>
 	<key>shellExitAction</key>
 	<integer>1</integer>
 	<key>type</key>
