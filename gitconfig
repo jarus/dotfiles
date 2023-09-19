@@ -19,3 +19,5 @@
 	skippedCherryPicks = false
 [credential]
 	helper = store --file ~/.git-credentials
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
