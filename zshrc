@@ -115,6 +115,9 @@ fi
 
 if [ -e /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    zinit ice as"completion"
+    zinit snippet $(brew --prefix)/share/zsh/site-functions/_brew
 fi
 
 if [[ -d "$HOME/.cargo/bin" ]]; then
