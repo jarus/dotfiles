@@ -78,6 +78,7 @@ fi
 PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg\n%(?.%F{yellow}.%F{red})$%f '
 
 zinit wait lucid for \
+    zsh-users/zsh-autosuggestions \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
   atload"zicompinit; zicdreplay" blockf \
