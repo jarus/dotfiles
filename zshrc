@@ -131,12 +131,16 @@ fi
 zinit light Aloxaf/fzf-tab
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' menu no
+zstyle ':fzf-tab:*' fzf-flags '--info=hidden' '--no-separator'
+zstyle ':fzf-tab:*' fzf-min-height 50
 zstyle ':fzf-tab:*' switch-group 'left' 'right'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
+zstyle ':completion:*:*:*:*:processes' command 'sudo ps ax -o pid,user,command'
 
 zinit ice lucid wait'0'
 zinit light joshskidmore/zsh-fzf-history-search
-typeset ZSH_FZF_HISTORY_SEARCH_FZF_EXTRA_ARGS='--layout=reverse'
+typeset ZSH_FZF_HISTORY_SEARCH_FZF_EXTRA_ARGS='--layout=reverse --height 50% --info=hidden --no-separator'
 
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
