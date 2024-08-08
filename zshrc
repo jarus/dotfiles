@@ -77,19 +77,6 @@ fi
 
 PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg\n%(?.%F{yellow}.%F{red})$%f '
 
-zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*:matches' group 'yes'
-zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*:options' auto-description '%d'
-zstyle ':completion:*:corrections' format '%F{green}-- %d (errors: %e) --%f'
-zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
-zstyle ':completion:*:messages' format '%F{purple} -- %d --%f'
-zstyle ':completion:*:warnings' format '%F{red}-- no matches found --%f'
-zstyle ':completion:*:default' list-prompt '%S%M matches%s'
-zstyle ':completion:*' format '%F{yellow}-- %d --%f'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' verbose yes
-
 zinit wait lucid for \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
@@ -140,6 +127,12 @@ if [[ "$VSCODE_INJECTION" == "1" ]]; then
   echo "Apply workaround for VSCode SSH Agent Forwarding bug #168202"
   export SSH_AUTH_SOCK=$(ls -t /tmp/ssh-**/* | head -1)
 fi
+
+zinit light Aloxaf/fzf-tab
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:*' switch-group 'left' 'right'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
 
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
