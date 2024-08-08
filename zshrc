@@ -134,6 +134,10 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:*' switch-group 'left' 'right'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
 
+zinit ice lucid wait'0'
+zinit light joshskidmore/zsh-fzf-history-search
+typeset ZSH_FZF_HISTORY_SEARCH_FZF_EXTRA_ARGS='--layout=reverse'
+
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
