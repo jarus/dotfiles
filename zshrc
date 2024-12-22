@@ -151,3 +151,9 @@ bindkey "^[[3~" delete-char
 
 alias ll="ls -alh --color"
 alias servit="python3 -m http.server 9000"
+
+if [[ "$TERM" == "xterm-256color" ]]; then
+  # Configure btop to use low color mode if term identifies as xterm-256color
+  # like Terminal.app on macOS
+  alias btop="btop --low-color"
+fi
