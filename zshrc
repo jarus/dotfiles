@@ -102,6 +102,7 @@ fi
 
 if [ -e /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
+    export HOMEBREW_NO_ENV_HINTS=1
 
     zinit ice as"completion"
     zinit snippet $(brew --prefix)/share/zsh/site-functions/_brew
