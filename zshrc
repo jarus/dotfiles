@@ -19,7 +19,7 @@ autoload -Uz add-zsh-hook
 () {
     zstyle ':vcs_info:*' enable git
 
-    local formats=" %b%c%u"
+    local formats="  %b%c%u"
     local actionformats="${formats} %F{yellow}!%a%f"
     zstyle ':vcs_info:*:*' formats $formats
     zstyle ':vcs_info:*:*' actionformats $actionformats
