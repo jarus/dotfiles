@@ -28,7 +28,7 @@ _pyenv_prompt_update() {
     fi
 
     _pyenv_prompt_python_version=$(python -c "import platform; print('%s %s' % (platform.python_implementation(), platform.python_version()))")
-    pyenv_prompt_msg=" %F{242} py:$_pyenv_prompt_pyenv_version ($_pyenv_prompt_python_version)%f"
+    pyenv_prompt_msg=" %F{242}󱔎 py:$_pyenv_prompt_pyenv_version ($_pyenv_prompt_python_version)%f"
 }
 
 add-zsh-hook precmd _pyenv_prompt_update

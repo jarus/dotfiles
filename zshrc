@@ -89,7 +89,7 @@ zinit wait lucid for \
     spwhitt/nix-zsh-completions
 
 
-zinit ice wait'!' if'[[ -d "$HOME/.pyenv/" ]]' silent atload'_pyenv_prompt_update'
+zinit ice wait'1' if'[[ -d "$HOME/.pyenv/" ]]' silent atload'_pyenv_prompt_update'
 zinit snippet ~/.dotfiles/zsh/pyenv.zsh
 
 zinit ice has'docker'
