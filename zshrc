@@ -13,6 +13,9 @@ autoload -Uz _zinit
 zinit ice compile'async.zsh' pick'async.zsh'
 zinit load mafredri/zsh-async
 
+zinit ice compile'helpers.plugin.zsh' pick'helpers.plugin.zsh'
+zinit load zpm-zsh/helpers
+
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
 
@@ -75,7 +78,7 @@ else
     PROMPT+=$'%F{242}%n%f@%F{190}%m%f '
 fi
 
-PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg\n%(?.%F{yellow}.%F{red})$%f '
+PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg$rust_version_prompt_msg\n%(?.%F{yellow}.%F{red})$%f '
 
 zinit wait lucid for \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
@@ -114,6 +117,9 @@ if [[ -d "$HOME/.cargo/bin" ]]; then
     atload"zicompinit; zicdreplay" \
     nocompile
   zinit load zdharma-continuum/null
+
+  zinit ice wait'1' has"rustup" silent atload'_rust_prompt_update'
+  zinit snippet ~/.dotfiles/zsh/rust_prompt.zsh
 fi
 
 if [[ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]]; then
