@@ -18,6 +18,9 @@ zinit load zpm-zsh/helpers
 
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
+autoload -U bashcompinit
+bashcompinit
+
 
 () {
     zstyle ':vcs_info:*' enable git
@@ -100,6 +103,9 @@ zinit snippet ~/.dotfiles/zsh/vault_completion.zsh
 
 zinit ice wait'1' has'vault' silent atload'_vault_prompt_update'
 zinit snippet ~/.dotfiles/zsh/vault_prompt.zsh
+
+zinit ice wait'1' has'terraform' silent atload"zicompinit; zicdreplay"
+zinit snippet ~/.dotfiles/zsh/terraform_completion.zsh
 
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
     source ~/.nix-profile/etc/profile.d/nix.sh
