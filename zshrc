@@ -95,6 +95,9 @@ zinit snippet ~/.dotfiles/zsh/pyenv.zsh
 zinit ice has'docker'
 zinit snippet https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
 
+zinit ice wait'1' has'vault' silent atload"zicompinit; zicdreplay"
+zinit snippet ~/.dotfiles/zsh/vault_completion.zsh
+
 zinit ice wait'1' has'vault' silent atload'_vault_prompt_update'
 zinit snippet ~/.dotfiles/zsh/vault_prompt.zsh
 
