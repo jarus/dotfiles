@@ -78,7 +78,7 @@ else
     PROMPT+=$'%F{242}%n%f@%F{190}%m%f '
 fi
 
-PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg$rust_version_prompt_msg\n%(?.%F{yellow}.%F{red})$%f '
+PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg$rust_version_prompt_msg$vault_prompt_msg\n%(?.%F{yellow}.%F{red})$%f '
 
 zinit wait lucid for \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
@@ -94,6 +94,9 @@ zinit snippet ~/.dotfiles/zsh/pyenv.zsh
 
 zinit ice has'docker'
 zinit snippet https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
+
+zinit ice wait'1' has'vault' silent atload'_vault_prompt_update'
+zinit snippet ~/.dotfiles/zsh/vault_prompt.zsh
 
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
     source ~/.nix-profile/etc/profile.d/nix.sh
