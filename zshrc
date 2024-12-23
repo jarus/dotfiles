@@ -23,8 +23,8 @@ autoload -Uz add-zsh-hook
     local actionformats="${formats} %F{yellow}!%a%f"
     zstyle ':vcs_info:*:*' formats $formats
     zstyle ':vcs_info:*:*' actionformats $actionformats
-    zstyle ':vcs_info:*:*' stagedstr "%F{green}●%f"
-    zstyle ':vcs_info:*:*' unstagedstr "%F{yellow}●%f"
+    zstyle ':vcs_info:*:*' stagedstr "%F{green}●%f "
+    zstyle ':vcs_info:*:*' unstagedstr "%F{yellow}●%f "
     zstyle ':vcs_info:*:*' check-for-changes true
     zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 
@@ -54,7 +54,7 @@ autoload -Uz add-zsh-hook
                 hook_com[branch]+=" "
             fi
             if [[ $line == $'? '* ]]; then
-                hook_com[staged]+="%F{red}●%f"
+                hook_com[staged]+="%F{red}●%f "
                 break
             fi
         done < <(git status --branch --porcelain=v2 2> /dev/null)
