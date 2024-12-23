@@ -85,12 +85,8 @@ zinit wait lucid for \
   atload"zicompinit; zicdreplay" blockf \
     spwhitt/nix-zsh-completions
 
-if [[ -d "$HOME/.pyenv/" ]]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH=$HOME/.pyenv/bin:$PATH
-fi
 
-zinit ice wait'!' silent atload'_pyenv_prompt_update'
+zinit ice wait'!' if'[[ -d "$HOME/.pyenv/" ]]' silent atload'_pyenv_prompt_update'
 zinit snippet ~/.dotfiles/zsh/pyenv.zsh
 
 zinit ice has'docker'

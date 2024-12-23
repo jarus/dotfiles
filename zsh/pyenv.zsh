@@ -1,14 +1,13 @@
 #!/usr/bin/env zsh
 
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH=$HOME/.pyenv/bin:$PATH
+
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
-if [[ ! -v 'PYENV_SHELL' ]]; then
-    if type pyenv > /dev/null; then
-        eval "$(pyenv init --path)"
-        eval "$(pyenv init -)"
-    fi
-fi
+eval "$(pyenv init --path)"
+eval "$(pyenv init - zsh)"
 
 declare -g pyenv_prompt_msg
 declare -g _pyenv_prompt_pyenv_version
