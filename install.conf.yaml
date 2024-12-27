@@ -11,5 +11,7 @@
     ~/.zshrc:
     ~/.zsh:
     ~/.gdbinit:
+    ~/.config/ghostty/config:
+      path: ghostty
 
 - shell: []

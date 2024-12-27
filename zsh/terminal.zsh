@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+if [[ $TERM == "xterm-ghostty" ]]; then
+    export GHOSTTY_SHELL_INTEGRATION_NO_TITLE=1
+fi
+
 _terminal_update_title() {
     local title
 
