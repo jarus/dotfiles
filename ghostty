@@ -349,7 +349,7 @@ freetype-load-flags = hinting,force-autohint,monochrome,autohint
 theme = tokyonight
 
 # Background color for the window.
-# background = #282c34
+background = #111117
 
 # Foreground color for the window.
 # foreground = #ffffff
@@ -357,9 +357,9 @@ theme = tokyonight
 # The foreground and background color for selection. If this is not set, then
 # the selection color is just the inverted window background and foreground
 # (note: not to be confused with the cell bg/fg).
-selection-foreground =
+# selection-foreground =
 
-selection-background =
+# selection-background =
 # Swap the foreground and background colors of cells for selection. This
 # option overrides the `selection-foreground` and `selection-background`
 # options.
@@ -695,7 +695,7 @@ cursor-style = block
 #   * `true`
 #   * `false`
 #
-cursor-style-blink =
+cursor-style-blink = true
 
 # The color of the text under the cursor. If this is not set, a default will
 # be chosen.
@@ -714,7 +714,9 @@ cursor-text =
 # behavior around edge cases are to be expected. This is unfortunately how
 # this feature is implemented across terminals because there isn't any other
 # way to implement it.
-cursor-click-to-move = true
+
+# Christoph: Doesn't work under ssh
+cursor-click-to-move = false
 
 # Hide the mouse immediately when typing. The mouse becomes visible again
 # when the mouse is used (button, movement, etc.). Platform-specific behavior
@@ -785,7 +787,7 @@ background-blur-radius = 0
 # is 0.15. This value still looks weird but you can at least see what's going
 # on. A value outside of the range 0.15 to 1 will be clamped to the nearest
 # valid value.
-unfocused-split-opacity = 0.7
+unfocused-split-opacity = 1
 
 # The color to dim the unfocused split. Unfocused splits are dimmed by
 # rendering a semi-transparent rectangle over the split. This sets the color of
@@ -1724,7 +1726,7 @@ shell-integration = detect
 #   * `title` - Set the window title via shell integration.
 #
 # Example: `cursor`, `no-cursor`, `sudo`, `no-sudo`, `title`, `no-title`
-shell-integration-features = cursor,no-sudo,title
+shell-integration-features = no-cursor,no-sudo,no-title
 
 # Sets the reporting format for OSC sequences that request color information.
 # Ghostty currently supports OSC 10 (foreground), OSC 11 (background), and
