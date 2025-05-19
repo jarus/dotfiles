@@ -81,7 +81,7 @@ else
     PROMPT+=$'%F{242}%n%f@%F{190}%m%f '
 fi
 
-PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg$rust_version_prompt_msg$vault_prompt_msg$openstack_prompt_msg\n%(?.%F{yellow}.%F{red})$%f '
+PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg$virtualenv_prompt_msg$rust_version_prompt_msg$vault_prompt_msg$openstack_prompt_msg\n%(?.%F{yellow}.%F{red})$%f '
 
 zinit wait lucid for \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
@@ -93,7 +93,10 @@ zinit wait lucid for \
 
 
 zinit ice wait'1' if'[[ -d "$HOME/.pyenv/" ]]' silent atload'_pyenv_prompt_update'
-zinit snippet ~/.dotfiles/zsh/pyenv.zsh
+zinit snippet ~/.dotfiles/zsh/python_pyenv.zsh
+
+zinit ice wait'1' silent atload'_virtualenv_prompt_update'
+zinit snippet ~/.dotfiles/zsh/python_virtualenv.zsh
 
 zinit ice has'docker'
 zinit snippet https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
