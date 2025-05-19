@@ -101,6 +101,14 @@ zinit snippet ~/.dotfiles/zsh/python_virtualenv.zsh
 zinit ice wait'1' silent
 zinit snippet ~/.dotfiles/zsh/python_uvx.zsh
 
+zinit ice as"completion" has"uv" \
+  atclone"uv generate-shell-completion zsh > _uv" \
+  atpull="%atclone" \
+  run-atpull \
+  atload"zicompinit; zicdreplay" \
+  nocompile
+zinit load zdharma-continuum/null
+
 zinit ice has'docker'
 zinit snippet https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
 
