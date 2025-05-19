@@ -141,6 +141,10 @@ if [[ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]]; t
   export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin":$PATH
 fi
 
+if [[ -d "$HOME/.lmstudio/bin" ]]; then
+  export PATH="$HOME/.lmstudio/bin":$PATH
+fi
+
 zinit light Aloxaf/fzf-tab
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' menu no
