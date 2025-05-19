@@ -98,6 +98,9 @@ zinit snippet ~/.dotfiles/zsh/python_pyenv.zsh
 zinit ice wait'1' silent atload'_virtualenv_prompt_update'
 zinit snippet ~/.dotfiles/zsh/python_virtualenv.zsh
 
+zinit ice wait'1' silent
+zinit snippet ~/.dotfiles/zsh/python_uvx.zsh
+
 zinit ice has'docker'
 zinit snippet https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
 
