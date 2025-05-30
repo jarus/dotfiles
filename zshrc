@@ -112,11 +112,9 @@ zinit load zdharma-continuum/null
 zinit ice has'docker'
 zinit snippet https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
 
-zinit ice as"completion" has"kubectl" \
+zinit ice wait lucid id-as"_local/completions/kubectl" as"completion" has"kubectl" \
   atclone"kubectl completion zsh > _kubectl" \
-  atpull="%atclone" \
-  run-atpull \
-  atload"zicompinit; zicdreplay" \
+  atpull="zinit creinstall -q ." \
   nocompile
 zinit load zdharma-continuum/null
 
