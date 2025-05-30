@@ -141,6 +141,10 @@ zinit snippet ~/.dotfiles/zsh/terraform_completion.zsh
 zinit ice wait'1' silent atload'_openstack_prompt_update'
 zinit snippet ~/.dotfiles/zsh/openstack_prompt.zsh
 
+if [[ -d "$HOME/bin" ]]; then
+  export PATH=$HOME/bin/:$PATH
+fi
+
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
     source ~/.nix-profile/etc/profile.d/nix.sh
 fi
