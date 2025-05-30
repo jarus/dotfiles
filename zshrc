@@ -127,7 +127,7 @@ zinit snippet https://raw.githubusercontent.com/ckt114/kubeswitch/refs/heads/mas
 zinit ice wait"1" has"kubie" silent
 zinit snippet ~/.dotfiles/zsh/kubie.zsh
 
-zinit ice has"kubie" atload"zicompinit; zicdreplay"
+zinit ice wait"1" has"kubie" silent atload"zicompinit; zicdreplay"
 zinit snippet https://raw.githubusercontent.com/sbstp/kubie/refs/heads/master/completion/kubie.bash
 
 zinit ice wait'1' has'vault' silent atload"zicompinit; zicdreplay"
