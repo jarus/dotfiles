@@ -81,7 +81,7 @@ else
     PROMPT+=$'%F{242}%n%f@%F{190}%m%f '
 fi
 
-PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg$virtualenv_prompt_msg$rust_version_prompt_msg$vault_prompt_msg$openstack_prompt_msg$kubie_prompt_msg\n%(?.%F{yellow}.%F{red})$%f '
+PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg$virtualenv_prompt_msg$rust_version_prompt_msg$vault_prompt_msg$openstack_prompt_msg\n%(?.%F{yellow}.%F{red})$%f '
 
 zinit wait lucid for \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
@@ -123,12 +123,6 @@ zinit snippet ~/.dotfiles/zsh/kubecolor.zsh
 
 zinit ice wait"1" has"kubeswitch" silent atload"zicompinit; zicdreplay"
 zinit snippet https://raw.githubusercontent.com/ckt114/kubeswitch/refs/heads/master/completion/kubeswitch
-
-zinit ice wait"1" has"kubie" silent
-zinit snippet ~/.dotfiles/zsh/kubie.zsh
-
-zinit ice wait"1" has"kubie" silent atload"zicompinit; zicdreplay"
-zinit snippet https://raw.githubusercontent.com/sbstp/kubie/refs/heads/master/completion/kubie.bash
 
 zinit ice wait'1' has'vault' silent atload"zicompinit; zicdreplay"
 zinit snippet ~/.dotfiles/zsh/vault_completion.zsh

@@ -13,6 +13,4 @@
     ~/.gdbinit:
     ~/.config/ghostty/config:
       path: ghostty
-    ~/.kube/kubie.yaml:
-      path: kubie.yaml
 - shell: []
