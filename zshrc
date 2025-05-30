@@ -81,7 +81,7 @@ else
     PROMPT+=$'%F{242}%n%f@%F{190}%m%f '
 fi
 
-PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg$virtualenv_prompt_msg$rust_version_prompt_msg$vault_prompt_msg$openstack_prompt_msg\n%(?.%F{yellow}.%F{red})$%f '
+PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg$virtualenv_prompt_msg$rust_version_prompt_msg$vault_prompt_msg$openstack_prompt_msg$kube_prompt_msg\n%(?.%F{yellow}.%F{red})$%f '
 
 zinit wait lucid for \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
@@ -117,6 +117,9 @@ zinit ice wait lucid id-as"_local/completions/kubectl" as"completion" has"kubect
   atpull="zinit creinstall -q ." \
   nocompile
 zinit load zdharma-continuum/null
+
+zinit ice wait"1" has"kubectl" silent
+zinit snippet ~/.dotfiles/zsh/kube_prompt.zsh
 
 zinit ice wait"1" has"kubecolor" silent
 zinit snippet ~/.dotfiles/zsh/kubecolor.zsh
