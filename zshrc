@@ -182,6 +182,9 @@ zinit load zdharma-continuum/null
 
 alias kubeswitch='switch'
 
+alias kc='kubectl'
+alias ks='kubeswitch'
+
 zinit ice wait'1' has'vault' silent atload"zicompinit; zicdreplay"
 zinit snippet ~/.dotfiles/zsh/vault_completion.zsh
 
