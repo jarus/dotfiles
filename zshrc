@@ -83,6 +83,46 @@ fi
 
 PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg$virtualenv_prompt_msg$rust_version_prompt_msg$vault_prompt_msg$openstack_prompt_msg$kube_prompt_msg\n%(?.%F{yellow}.%F{red})$%f '
 
+if [[ -d "$HOME/bin" ]]; then
+  export PATH=$HOME/bin/:$PATH
+fi
+
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
+    source ~/.nix-profile/etc/profile.d/nix.sh
+fi
+
+if [ -e /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    export HOMEBREW_NO_ENV_HINTS=1
+
+    zinit ice as"completion"
+    zinit snippet $(brew --prefix)/share/zsh/site-functions/_brew
+fi
+
+if [[ -d "$HOME/.cargo/bin" ]]; then
+  export PATH=$HOME/.cargo/bin:$PATH
+
+  zinit ice as"completion" has"rustup" \
+    atclone"rustup completions zsh > _rustup && rustup completions zsh cargo > _cargo" \
+    atpull="%atclone" \
+    run-atpull \
+    atload"zicompinit; zicdreplay" \
+    nocompile
+  zinit load zdharma-continuum/null
+
+  zinit ice wait'1' has"rustup" silent atload'_rust_prompt_update'
+  zinit snippet ~/.dotfiles/zsh/rust_prompt.zsh
+fi
+
+if [[ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]]; then
+  export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin":$PATH
+fi
+
+if [[ -d "$HOME/.lmstudio/bin" ]]; then
+  export PATH="$HOME/.lmstudio/bin":$PATH
+fi
+
+
 zinit wait lucid for \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
@@ -135,45 +175,6 @@ zinit snippet ~/.dotfiles/zsh/terraform_completion.zsh
 
 zinit ice wait'1' silent atload'_openstack_prompt_update'
 zinit snippet ~/.dotfiles/zsh/openstack_prompt.zsh
-
-if [[ -d "$HOME/bin" ]]; then
-  export PATH=$HOME/bin/:$PATH
-fi
-
-if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
-    source ~/.nix-profile/etc/profile.d/nix.sh
-fi
-
-if [ -e /opt/homebrew/bin/brew ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    export HOMEBREW_NO_ENV_HINTS=1
-
-    zinit ice as"completion"
-    zinit snippet $(brew --prefix)/share/zsh/site-functions/_brew
-fi
-
-if [[ -d "$HOME/.cargo/bin" ]]; then
-  export PATH=$HOME/.cargo/bin:$PATH
-
-  zinit ice as"completion" has"rustup" \
-    atclone"rustup completions zsh > _rustup && rustup completions zsh cargo > _cargo" \
-    atpull="%atclone" \
-    run-atpull \
-    atload"zicompinit; zicdreplay" \
-    nocompile
-  zinit load zdharma-continuum/null
-
-  zinit ice wait'1' has"rustup" silent atload'_rust_prompt_update'
-  zinit snippet ~/.dotfiles/zsh/rust_prompt.zsh
-fi
-
-if [[ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]]; then
-  export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin":$PATH
-fi
-
-if [[ -d "$HOME/.lmstudio/bin" ]]; then
-  export PATH="$HOME/.lmstudio/bin":$PATH
-fi
 
 zinit light Aloxaf/fzf-tab
 zstyle ':completion:*:descriptions' format '[%d]'
