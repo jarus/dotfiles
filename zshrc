@@ -124,9 +124,6 @@ zinit snippet ~/.dotfiles/zsh/kube_prompt.zsh
 zinit ice wait"1" has"kubecolor" silent
 zinit snippet ~/.dotfiles/zsh/kubecolor.zsh
 
-zinit ice wait"1" has"kubeswitch" silent atload"zicompinit; zicdreplay"
-zinit snippet https://raw.githubusercontent.com/ckt114/kubeswitch/refs/heads/master/completion/kubeswitch
-
 zinit ice wait'1' has'vault' silent atload"zicompinit; zicdreplay"
 zinit snippet ~/.dotfiles/zsh/vault_completion.zsh
 
