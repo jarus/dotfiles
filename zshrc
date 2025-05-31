@@ -84,7 +84,7 @@ fi
 PROMPT+=$'%F{blue}%~%f$vcs_info_msg_0_$pyenv_prompt_msg$virtualenv_prompt_msg$rust_version_prompt_msg$vault_prompt_msg$openstack_prompt_msg$kube_prompt_msg\n%(?.%F{yellow}.%F{red})$%f '
 
 if [[ -d "$HOME/bin" ]]; then
-  export PATH=$HOME/bin/:$PATH
+  export PATH=$HOME/bin:$PATH
 fi
 
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
@@ -153,8 +153,9 @@ zinit ice has'docker'
 zinit snippet https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
 
 zinit ice wait lucid id-as"_local/completions/kubectl" as"completion" has"kubectl" \
-  atclone"kubectl completion zsh > _kubectl" \
-  atpull="zinit creinstall -q ." \
+  atclone"kubectl completion zsh > _kubectl && zinit creinstall -q ." \
+  atpull="%atclone" \
+  run-atpull \
   nocompile
 zinit load zdharma-continuum/null
 
@@ -163,6 +164,23 @@ zinit snippet ~/.dotfiles/zsh/kube_prompt.zsh
 
 zinit ice wait"1" has"kubecolor" silent
 zinit snippet ~/.dotfiles/zsh/kubecolor.zsh
+
+zinit ice wait"1" lucid id-as"_local/switcher" has"switcher" \
+  atclone"switcher init zsh > switcher.zsh" \
+  atpull="%atclone" \
+  run-atpull \
+  nocompile \
+  alias
+zinit load zdharma-continuum/null
+
+zinit ice wait"1" lucid id-as"_local/completions/switch" as"completion" has"switcher" \
+  atclone"switcher completion zsh | sed 's/switcher/switch/g' > _switch && zinit creinstall -q ." \
+  atpull="%atclone" \
+  run-atpull \
+  nocompile
+zinit load zdharma-continuum/null
+
+alias kubeswitch='switch'
 
 zinit ice wait'1' has'vault' silent atload"zicompinit; zicdreplay"
 zinit snippet ~/.dotfiles/zsh/vault_completion.zsh
